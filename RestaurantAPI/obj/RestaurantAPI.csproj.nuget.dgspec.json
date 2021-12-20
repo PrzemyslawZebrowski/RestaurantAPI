@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#\\Kurs\\Kurs\\RestaurantAPI.csproj": {}
+    "D:\\C#\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj": {}
   },
   "projects": {
-    "D:\\C#\\Kurs\\Kurs\\RestaurantAPI.csproj": {
+    "D:\\C#\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\Kurs\\Kurs\\RestaurantAPI.csproj",
+        "projectUniqueName": "D:\\C#\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
         "projectName": "RestaurantAPI",
-        "projectPath": "D:\\C#\\Kurs\\Kurs\\RestaurantAPI.csproj",
+        "projectPath": "D:\\C#\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
         "packagesPath": "C:\\Users\\jamus\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\Kurs\\Kurs\\obj\\",
+        "outputPath": "D:\\C#\\RestaurantAPI\\RestaurantAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jamus\\AppData\\Roaming\\NuGet\\NuGet.Config",

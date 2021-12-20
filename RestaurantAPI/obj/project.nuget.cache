@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "w1Aqi+U6j080cRdL0EXi6KBmrkrQxzTMlr/68UdRQ+e/2tcZnYNRtAayNCOkbRwK30SDV2eb5ivKAQptryNDGw==",
+  "dgSpecHash": "GFCStPgoZXNqmi+UzJNulqAsQHqpwyUZ8avZudIco0n4viOOKfg9alm6o+HukxQcaVMXI7EWI8YiOa8K+RKVAg==",
   "success": true,
-  "projectFilePath": "D:\\C#\\Kurs\\Kurs\\RestaurantAPI.csproj",
+  "projectFilePath": "D:\\C#\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jamus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jamus\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
