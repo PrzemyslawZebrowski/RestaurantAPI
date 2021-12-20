@@ -1865,9 +1865,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C#\\Kurs\\Kurs\\Kurs.csproj",
-      "projectName": "Kurs",
-      "projectPath": "D:\\C#\\Kurs\\Kurs\\Kurs.csproj",
+      "projectUniqueName": "D:\\C#\\Kurs\\Kurs\\RestaurantAPI.csproj",
+      "projectName": "RestaurantAPI",
+      "projectPath": "D:\\C#\\Kurs\\Kurs\\RestaurantAPI.csproj",
       "packagesPath": "C:\\Users\\jamus\\.nuget\\packages\\",
       "outputPath": "D:\\C#\\Kurs\\Kurs\\obj\\",
       "projectStyle": "PackageReference",
