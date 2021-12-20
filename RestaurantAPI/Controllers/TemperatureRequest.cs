@@ -1,4 +1,4 @@
-﻿namespace Kurs.Controllers
+﻿namespace RestaurantAPI.Controllers
 {
     public class TemperatureRequest
     {

@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Kurs.Entities
+namespace RestaurantAPI.Entities
 {
     public class RestaurantDbContext : DbContext
     {
@@ -21,6 +16,14 @@ namespace Kurs.Entities
                 .Property(r => r.Name)
                 .IsRequired()
                 .HasMaxLength(25);
+
+            modelBuilder.Entity<Address>()
+                .Property(a => a.City)
+                .HasMaxLength(50);
+
+            modelBuilder.Entity<Address>()
+                .Property(a => a.Street)
+                .HasMaxLength(50);
 
             modelBuilder.Entity<Dish>()
                 .Property(d => d.Name)

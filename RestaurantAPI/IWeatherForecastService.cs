@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Kurs
+namespace RestaurantAPI
 {
     public interface IWeatherForecastService
     {

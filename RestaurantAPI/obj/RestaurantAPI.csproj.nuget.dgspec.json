@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj": {}
+    "D:\\Programowanie\\ASP.NET CORE\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj": {}
   },
   "projects": {
-    "D:\\C#\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj": {
+    "D:\\Programowanie\\ASP.NET CORE\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
+        "projectUniqueName": "D:\\Programowanie\\ASP.NET CORE\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
         "projectName": "RestaurantAPI",
-        "projectPath": "D:\\C#\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
-        "packagesPath": "C:\\Users\\jamus\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\RestaurantAPI\\RestaurantAPI\\obj\\",
+        "projectPath": "D:\\Programowanie\\ASP.NET CORE\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
+        "packagesPath": "C:\\Users\\Viriz\\.nuget\\packages\\",
+        "outputPath": "D:\\Programowanie\\ASP.NET CORE\\RestaurantAPI\\RestaurantAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jamus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Viriz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

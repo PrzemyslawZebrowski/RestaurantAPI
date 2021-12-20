@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Kurs.Migrations
+namespace RestaurantAPI.Migrations
 {
     public partial class Init : Migration
     {
