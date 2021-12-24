@@ -53,3 +53,5 @@ D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\obj\Debug\net6.0\Resta
 D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\obj\Debug\net6.0\ref\RestaurantAPI.dll
 D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\obj\Debug\net6.0\RestaurantAPI.pdb
 D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\obj\Debug\net6.0\RestaurantAPI.genruntimeconfig.cache
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\AutoMapper.dll
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
