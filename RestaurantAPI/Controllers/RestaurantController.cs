@@ -13,6 +13,7 @@ using RestaurantAPI.Services;
 namespace RestaurantAPI.Controllers
 {
     [Route("api/restaurant")]
+    [ApiController]
 
     public class RestaurantController : ControllerBase
     {
@@ -26,17 +27,7 @@ namespace RestaurantAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult UpdateById([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            bool isUpdated = _restaurantService.UpdateById(id, dto);
-
-            if (!isUpdated)
-            {
-                return NotFound();
-            }
+            _restaurantService.UpdateById(id, dto);
 
             return Ok();
         }
@@ -44,22 +35,14 @@ namespace RestaurantAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteById([FromRoute] int id)
         {
-            bool isDeleted = _restaurantService.DeleteById(id);
-            if (isDeleted)
-            {
-                return NoContent();
-            }
+            _restaurantService.DeleteById(id);
 
-            return NotFound();
+            return NoContent();
         }
 
         [HttpPost]
         public ActionResult AddRestaurant([FromBody] AddRestaurantDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             int id = _restaurantService.Add(dto);
 
             return Created($"/api/restaurant/{id}", null);
@@ -70,9 +53,6 @@ namespace RestaurantAPI.Controllers
         {
             var restaurantsDtos = _restaurantService.GetAll();
 
-            if (restaurantsDtos == null)
-                return NotFound();
-
             return Ok(restaurantsDtos);
         }
 
@@ -81,9 +61,6 @@ namespace RestaurantAPI.Controllers
         {
             var restaurantDto = _restaurantService.GetById(id);
 
-            if (restaurantDto == null)
-                return NotFound();
-            
             return Ok(restaurantDto);
         }
     }

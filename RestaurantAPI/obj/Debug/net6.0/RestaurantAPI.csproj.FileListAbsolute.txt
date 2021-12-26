@@ -55,3 +55,12 @@ D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\obj\Debug\net6.0\Resta
 D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\obj\Debug\net6.0\RestaurantAPI.genruntimeconfig.cache
 D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\AutoMapper.dll
 D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\nlog.config
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\NLog.dll
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\obj\Debug\net6.0\RestaurantAPI.MvcApplicationPartsAssemblyInfo.cs
