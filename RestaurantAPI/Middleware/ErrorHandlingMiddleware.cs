@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RestaurantAPI.Exceptions;
 
-namespace RestaurantAPI.Services.Middleware
+namespace RestaurantAPI.Middleware
 {
     public class ErrorHandlingMiddleware : IMiddleware
     {
