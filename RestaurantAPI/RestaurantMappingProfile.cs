@@ -31,6 +31,7 @@ namespace RestaurantAPI
                         PostalCode = dto.PostalCode,
                         Street = dto.Street
                     }));
+            CreateMap<AddDishDto, Dish>();
         }
     }
 }
