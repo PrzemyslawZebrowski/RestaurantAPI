@@ -15,9 +15,7 @@ namespace RestaurantAPI.Models
         public string Description { get; set; }
         public string Category { get; set; }
         public bool HasDelivery { get; set; }
-        [EmailAddress]
         public string ContactEmail { get; set; }
-        [Phone]
         public string ContactNumber { get; set; }
         [Required]
         [MaxLength(50)]
