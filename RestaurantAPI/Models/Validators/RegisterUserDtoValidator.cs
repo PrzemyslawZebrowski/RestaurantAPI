@@ -32,6 +32,7 @@ namespace RestaurantAPI.Models.Validators
                         context.AddFailure("Email","That email is taken");
                     }
                 });
+            RuleFor(x => x.DateOfBirth).NotEmpty();
 
 
         }

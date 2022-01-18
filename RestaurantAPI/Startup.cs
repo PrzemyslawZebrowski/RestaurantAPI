@@ -1,6 +1,7 @@
 using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +14,7 @@ using RestaurantAPI.Services;
 using RestaurantAPI.Middleware;
 using RestaurantAPI.Models;
 using RestaurantAPI.Models.Validators;
+using RestaurantAPI.Authorization;
 
 namespace RestaurantAPI
 {
@@ -50,6 +52,15 @@ namespace RestaurantAPI
                 };
             });
 
+            services.AddAuthorization(option =>
+            {
+                option.AddPolicy("HasNationality",
+                    builder =>builder.RequireClaim("Nationality", "German", "Polish"));
+
+                option.AddPolicy("Atleast20", 
+                    builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
+            });
+            services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
             services.AddControllers();
             services.AddFluentValidation();
             services.AddDbContext<RestaurantDbContext>();
@@ -64,6 +75,7 @@ namespace RestaurantAPI
             services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
             services.AddSwaggerGen();
             
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
