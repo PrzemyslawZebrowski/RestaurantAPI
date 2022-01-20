@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Um4Hm3JcnicaA5S1iHcb0WJXCHhD2Z6CWbD6+CuWY1Eah1/RqgUmzAMvxOFQhwGvT6KBfJMemb0BvexmgRdNlA==",
+  "dgSpecHash": "yqn7PTuyiwoHJkMwaJqawshWx+k0tLBZ+iwiIes2mgf40uu6psmCe3EOXxZLbW7Fh671SX1jTxjUcOJKCQX2Ng==",
   "success": true,
   "projectFilePath": "D:\\Programowanie\\ASP.NET CORE\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Viriz\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
-    "C:\\Users\\Viriz\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\Viriz\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\Viriz\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Viriz\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\Viriz\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.6\\fluentvalidation.aspnetcore.10.3.6.nupkg.sha512",
     "C:\\Users\\Viriz\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.6\\fluentvalidation.dependencyinjectionextensions.10.3.6.nupkg.sha512",
@@ -53,7 +53,6 @@
     "C:\\Users\\Viriz\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\Viriz\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
     "C:\\Users\\Viriz\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.10.0\\system.identitymodel.tokens.jwt.6.10.0.nupkg.sha512",
-    "C:\\Users\\Viriz\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\Viriz\\.nuget\\packages\\system.runtime.caching\\4.7.0\\system.runtime.caching.4.7.0.nupkg.sha512",
     "C:\\Users\\Viriz\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Viriz\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",

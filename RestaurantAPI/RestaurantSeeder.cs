@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using RestaurantAPI.Entities;
+using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.Configuration;
-using RestaurantAPI.Entities;
 
 namespace RestaurantAPI
 {

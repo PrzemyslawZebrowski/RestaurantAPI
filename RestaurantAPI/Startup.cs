@@ -1,4 +1,3 @@
-using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
@@ -9,12 +8,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using RestaurantAPI.Authorization;
 using RestaurantAPI.Entities;
-using RestaurantAPI.Services;
 using RestaurantAPI.Middleware;
 using RestaurantAPI.Models;
 using RestaurantAPI.Models.Validators;
-using RestaurantAPI.Authorization;
+using RestaurantAPI.Services;
+using System.Text;
 
 namespace RestaurantAPI
 {
@@ -55,18 +55,19 @@ namespace RestaurantAPI
             services.AddAuthorization(option =>
             {
                 option.AddPolicy("HasNationality",
-                    builder =>builder.RequireClaim("Nationality", "German", "Polish"));
+                    builder => builder.RequireClaim("Nationality", "German", "Polish"));
 
-                option.AddPolicy("Atleast20", 
+                option.AddPolicy("Atleast20",
                     builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
             });
             services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+            services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
             services.AddControllers();
             services.AddFluentValidation();
             services.AddDbContext<RestaurantDbContext>();
             services.AddScoped<RestaurantSeeder>();
             services.AddAutoMapper(this.GetType().Assembly);
-            services.AddScoped<IRestaurantService,RestaurantService>();
+            services.AddScoped<IRestaurantService, RestaurantService>();
             services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<RequestTimeMiddleware>();
             services.AddScoped<IDishService, DishService>();
@@ -74,7 +75,7 @@ namespace RestaurantAPI
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
             services.AddSwaggerGen();
-            
+
 
         }
 

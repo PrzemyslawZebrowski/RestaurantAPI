@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using RestaurantAPI.Entities;
 using RestaurantAPI.Exceptions;
 using RestaurantAPI.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RestaurantAPI.Services
 {
@@ -82,7 +79,7 @@ namespace RestaurantAPI.Services
             var dishToRemove = restaurant.Dishes.FirstOrDefault(d => d.Id == dishId);
             if (dishToRemove is null)
                 throw new NotFoundException("Dish not found");
-            
+
             _dbContext.Dishes.Remove(dishToRemove);
             _dbContext.SaveChanges();
         }
@@ -97,6 +94,6 @@ namespace RestaurantAPI.Services
             return restaurant;
         }
 
-        
+
     }
 }

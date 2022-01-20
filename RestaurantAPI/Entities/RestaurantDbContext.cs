@@ -17,7 +17,7 @@ namespace RestaurantAPI.Entities
             modelBuilder.Entity<Role>()
                 .Property(r => r.Name)
                 .IsRequired();
-            
+
             modelBuilder.Entity<User>()
                 .Property(u => u.Email)
                 .IsRequired();

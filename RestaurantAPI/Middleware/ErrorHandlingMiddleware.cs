@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using RestaurantAPI.Exceptions;
+using System;
+using System.Threading.Tasks;
 
 namespace RestaurantAPI.Middleware
 {
@@ -24,6 +20,11 @@ namespace RestaurantAPI.Middleware
             {
                 await next.Invoke(context);
             }
+            catch (ForbidException forbidException)
+            {
+                context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                await context.Response.WriteAsync(forbidException.Message);
+            }
             catch (BadRequestException badRequestException)
             {
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
@@ -37,7 +38,7 @@ namespace RestaurantAPI.Middleware
             }
             catch (Exception e)
             {
-                _logger.LogError(e,e.Message);
+                _logger.LogError(e, e.Message);
                 context.Response.StatusCode = 500;
                 await context.Response.WriteAsync("Something went wrong");
             }

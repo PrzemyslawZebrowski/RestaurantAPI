@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 using RestaurantAPI.Entities;
+using System.Linq;
 
 namespace RestaurantAPI.Models.Validators
 {
@@ -29,7 +24,7 @@ namespace RestaurantAPI.Models.Validators
                     var emailInUse = dbContext.Users.Any(u => u.Email == value);
                     if (emailInUse)
                     {
-                        context.AddFailure("Email","That email is taken");
+                        context.AddFailure("Email", "That email is taken");
                     }
                 });
             RuleFor(x => x.DateOfBirth).NotEmpty();

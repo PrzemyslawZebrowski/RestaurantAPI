@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using RestaurantAPI.Entities;
 using RestaurantAPI.Models;
 using RestaurantAPI.Services;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace RestaurantAPI.Controllers
 {
@@ -21,14 +15,14 @@ namespace RestaurantAPI.Controllers
         private readonly IRestaurantService _restaurantService;
 
         public RestaurantController(IRestaurantService restaurantService)
-        {   
+        {
             _restaurantService = restaurantService;
         }
 
         [HttpPut("{id}")]
         public ActionResult UpdateById([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
         {
-            _restaurantService.UpdateById(id, dto);
+            _restaurantService.UpdateById(id, dto, User);
 
             return Ok();
         }
@@ -36,7 +30,7 @@ namespace RestaurantAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteById([FromRoute] int id)
         {
-            _restaurantService.DeleteById(id);
+            _restaurantService.DeleteById(id, User);
 
             return NoContent();
         }
@@ -45,7 +39,9 @@ namespace RestaurantAPI.Controllers
         [Authorize(Roles = "Manager,Admin")]
         public ActionResult AddRestaurant([FromBody] AddRestaurantDto dto)
         {
-            int id = _restaurantService.Add(dto);
+            var userId = int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value);
+
+            int id = _restaurantService.Add(dto, userId);
 
             return Created($"/api/restaurant/{id}", null);
         }
