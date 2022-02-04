@@ -59,9 +59,12 @@ namespace RestaurantAPI
 
                 option.AddPolicy("Atleast20",
                     builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
+                option.AddPolicy("MoreThan2CreatedRestaurants",
+                    builder => builder.AddRequirements(new MinimumCreatedRestaurantsRequirement(2)));
             });
-            services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+            services.AddScoped<IAuthorizationHandler, MinimumCreatedRestaurantsRequirementHandler>();
             services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
+            services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
             services.AddControllers();
             services.AddFluentValidation();
             services.AddDbContext<RestaurantDbContext>();
@@ -74,6 +77,8 @@ namespace RestaurantAPI
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
+            services.AddScoped<IUserContextService, UserContextService>();
+            services.AddHttpContextAccessor();
             services.AddSwaggerGen();
 
 
