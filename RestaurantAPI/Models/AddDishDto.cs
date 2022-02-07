@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantAPI.Models
+namespace RestaurantAPI.Models;
+
+public class AddDishDto
 {
-    public class AddDishDto
-    {
-        [Required]
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-    }
+    [Required] public string Name { get; set; }
+
+    public string Description { get; set; }
+    public decimal Price { get; set; }
 }

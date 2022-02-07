@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace RestaurantAPI.Models;
 
-namespace RestaurantAPI.Models
+public enum SortDirection
 {
-    public enum SortDirection
-    {
-        ASC,
-        DESC
-    }
+    ASC,
+    DESC
 }

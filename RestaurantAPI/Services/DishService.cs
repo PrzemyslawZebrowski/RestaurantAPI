@@ -1,99 +1,99 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using RestaurantAPI.Entities;
 using RestaurantAPI.Exceptions;
 using RestaurantAPI.Models;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace RestaurantAPI.Services
+namespace RestaurantAPI.Services;
+
+public interface IDishService
 {
-    public interface IDishService
+    int AddDish(int restaurantId, AddDishDto dto);
+    DishDto GetById(int restaurantId, int dishId);
+    IEnumerable<DishDto> GetAll(int restaurantId);
+    void DeleteAll(int restaurantId);
+    void DeleteById(int restaurantId, int dishId);
+}
+
+public class DishService : IDishService
+{
+    private readonly RestaurantDbContext _dbContext;
+    private readonly IMapper _mapper;
+
+    public DishService(RestaurantDbContext dbContext, IMapper mapper)
     {
-        int AddDish(int restaurantId, AddDishDto dto);
-        DishDto GetById(int restaurantId, int dishId);
-        IEnumerable<DishDto> GetAll(int restaurantId);
-        void DeleteAll(int restaurantId);
-        void DeleteById(int restaurantId, int dishId);
+        _dbContext = dbContext;
+        _mapper = mapper;
     }
 
-    public class DishService : IDishService
+    public int AddDish(int restaurantId, AddDishDto dto)
     {
-        private readonly RestaurantDbContext _dbContext;
-        private readonly IMapper _mapper;
+        var restaurant = GetRestaurant(restaurantId);
 
-        public DishService(RestaurantDbContext dbContext, IMapper mapper)
-        {
-            _dbContext = dbContext;
-            _mapper = mapper;
-        }
+        var dishEntity = _mapper.Map<Dish>(dto);
+        dishEntity.RestaurantId = restaurantId;
 
-        public int AddDish(int restaurantId, AddDishDto dto)
-        {
-            var restaurant = GetRestaurant(restaurantId);
+        _dbContext.Dishes.Add(dishEntity);
+        _dbContext.SaveChanges();
 
-            var dishEntity = _mapper.Map<Dish>(dto);
-            dishEntity.RestaurantId = restaurantId;
+        return dishEntity.Id;
+    }
 
-            _dbContext.Dishes.Add(dishEntity);
-            _dbContext.SaveChanges();
+    public DishDto GetById(int restaurantId, int dishId)
+    {
+        var restaurant = GetRestaurant(restaurantId);
 
-            return dishEntity.Id;
-        }
+        var dishEntity = restaurant.Dishes.FirstOrDefault(d => d.Id == dishId);
+        if (dishEntity == null)
+            throw new NotFoundException("Dish not found");
 
-        public DishDto GetById(int restaurantId, int dishId)
-        {
-            var restaurant = GetRestaurant(restaurantId);
+        var dishDto = _mapper.Map<DishDto>(dishEntity);
+        return dishDto;
+    }
 
-            var dishEntity = restaurant.Dishes.FirstOrDefault(d => d.Id == dishId);
-            if (dishEntity == null)
-                throw new NotFoundException("Dish not found");
+    public IEnumerable<DishDto> GetAll(int restaurantId)
+    {
+        var restaurant = GetRestaurant(restaurantId);
 
-            var dishDto = _mapper.Map<DishDto>(dishEntity);
-            return dishDto;
-        }
+        var dishes = restaurant.Dishes;
 
-        public IEnumerable<DishDto> GetAll(int restaurantId)
-        {
-            var restaurant = GetRestaurant(restaurantId);
+        if (!dishes.Any())
+            throw new NotFoundException("Restaurant dishes not found");
 
-            var dishes = restaurant.Dishes;
+        var dishDots = _mapper.Map<List<DishDto>>(dishes);
+        return dishDots;
+    }
 
-            if (!dishes.Any())
-                throw new NotFoundException("Restaurant dishes not found");
+    public void DeleteAll(int restaurantId)
+    {
+        var restaurant = GetRestaurant(restaurantId);
 
-            var dishDots = _mapper.Map<List<DishDto>>(dishes);
-            return dishDots;
-        }
-        public void DeleteAll(int restaurantId)
-        {
-            var restaurant = GetRestaurant(restaurantId);
+        _dbContext.Dishes.RemoveRange(restaurant.Dishes);
+        _dbContext.SaveChanges();
+    }
 
-            _dbContext.Dishes.RemoveRange(restaurant.Dishes);
-            _dbContext.SaveChanges();
-        }
-        public void DeleteById(int restaurantId, int dishId)
-        {
-            var restaurant = GetRestaurant(restaurantId);
+    public void DeleteById(int restaurantId, int dishId)
+    {
+        var restaurant = GetRestaurant(restaurantId);
 
-            var dishToRemove = restaurant.Dishes.FirstOrDefault(d => d.Id == dishId);
-            if (dishToRemove is null)
-                throw new NotFoundException("Dish not found");
+        var dishToRemove = restaurant.Dishes.FirstOrDefault(d => d.Id == dishId);
+        if (dishToRemove is null)
+            throw new NotFoundException("Dish not found");
 
-            _dbContext.Dishes.Remove(dishToRemove);
-            _dbContext.SaveChanges();
-        }
-        private Restaurant GetRestaurant(int restaurantId)
-        {
-            var restaurant = _dbContext.Restaurants
-                .Include(r => r.Dishes)
-                .FirstOrDefault(r => r.Id == restaurantId);
-            if (restaurant == null)
-                throw new NotFoundException("Restaurant not found");
+        _dbContext.Dishes.Remove(dishToRemove);
+        _dbContext.SaveChanges();
+    }
 
-            return restaurant;
-        }
+    private Restaurant GetRestaurant(int restaurantId)
+    {
+        var restaurant = _dbContext.Restaurants
+            .Include(r => r.Dishes)
+            .FirstOrDefault(r => r.Id == restaurantId);
+        if (restaurant == null)
+            throw new NotFoundException("Restaurant not found");
 
-
+        return restaurant;
     }
 }

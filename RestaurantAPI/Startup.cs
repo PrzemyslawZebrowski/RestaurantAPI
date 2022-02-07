@@ -1,3 +1,4 @@
+using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
@@ -14,108 +15,95 @@ using RestaurantAPI.Middleware;
 using RestaurantAPI.Models;
 using RestaurantAPI.Models.Validators;
 using RestaurantAPI.Services;
-using System.Text;
 
-namespace RestaurantAPI
+namespace RestaurantAPI;
+
+public class Startup
 {
-    public class Startup
+    public Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
+        Configuration = configuration;
+    }
+
+    public IConfiguration Configuration { get; }
+
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        var authenticationSettings = new AuthenticationSettings();
+        Configuration.GetSection("Authentication").Bind(authenticationSettings);
+
+        services.AddSingleton(authenticationSettings);
+
+        services.AddAuthentication(option =>
         {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+            option.DefaultAuthenticateScheme = "Bearer";
+            option.DefaultChallengeScheme = "Bearer";
+            option.DefaultScheme = "Bearer";
+        }).AddJwtBearer(cfg =>
         {
-            var authenticationSettings = new AuthenticationSettings();
-            Configuration.GetSection("Authentication").Bind(authenticationSettings);
-
-            services.AddSingleton(authenticationSettings);
-
-            services.AddAuthentication(option =>
+            cfg.RequireHttpsMetadata = false;
+            cfg.SaveToken = true;
+            cfg.TokenValidationParameters = new TokenValidationParameters
             {
-                option.DefaultAuthenticateScheme = "Bearer";
-                option.DefaultChallengeScheme = "Bearer";
-                option.DefaultScheme = "Bearer";
-            }).AddJwtBearer(cfg =>
-            {
-                cfg.RequireHttpsMetadata = false;
-                cfg.SaveToken = true;
-                cfg.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidIssuer = authenticationSettings.JwtIssuer,
-                    ValidAudience = authenticationSettings.JwtIssuer,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey))
-                };
-            });
+                ValidIssuer = authenticationSettings.JwtIssuer,
+                ValidAudience = authenticationSettings.JwtIssuer,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey))
+            };
+        });
 
-            services.AddAuthorization(option =>
-            {
-                option.AddPolicy("HasNationality",
-                    builder => builder.RequireClaim("Nationality", "German", "Polish"));
-
-                option.AddPolicy("Atleast20",
-                    builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
-                option.AddPolicy("MoreThan2CreatedRestaurants",
-                    builder => builder.AddRequirements(new MinimumCreatedRestaurantsRequirement(2)));
-            });
-            services.AddScoped<IAuthorizationHandler, MinimumCreatedRestaurantsRequirementHandler>();
-            services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
-            services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
-            services.AddControllers();
-            services.AddFluentValidation();
-            services.AddDbContext<RestaurantDbContext>();
-            services.AddScoped<RestaurantSeeder>();
-            services.AddAutoMapper(this.GetType().Assembly);
-            services.AddScoped<IRestaurantService, RestaurantService>();
-            services.AddScoped<ErrorHandlingMiddleware>();
-            services.AddScoped<RequestTimeMiddleware>();
-            services.AddScoped<IDishService, DishService>();
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-            services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
-            services.AddScoped<IUserContextService, UserContextService>();
-            services.AddScoped<IValidator<RestaurantQuery>, RestaurantQueryValidator>();
-            services.AddHttpContextAccessor();
-            services.AddSwaggerGen();
-
-
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RestaurantSeeder seeder)
+        services.AddAuthorization(option =>
         {
-            seeder.Seed();
+            option.AddPolicy("HasNationality",
+                builder => builder.RequireClaim("Nationality", "German", "Polish"));
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            option.AddPolicy("Atleast20",
+                builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
+            option.AddPolicy("MoreThan2CreatedRestaurants",
+                builder => builder.AddRequirements(new MinimumCreatedRestaurantsRequirement(2)));
+        });
+        services.AddScoped<IAuthorizationHandler, MinimumCreatedRestaurantsRequirementHandler>();
+        services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
+        services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+        services.AddControllers();
+        services.AddFluentValidation();
+        services.AddDbContext<RestaurantDbContext>();
+        services.AddScoped<RestaurantSeeder>();
+        services.AddAutoMapper(GetType().Assembly);
+        services.AddScoped<IRestaurantService, RestaurantService>();
+        services.AddScoped<ErrorHandlingMiddleware>();
+        services.AddScoped<RequestTimeMiddleware>();
+        services.AddScoped<IDishService, DishService>();
+        services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+        services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
+        services.AddScoped<IUserContextService, UserContextService>();
+        services.AddScoped<IValidator<RestaurantQuery>, RestaurantQueryValidator>();
+        services.AddHttpContextAccessor();
+        services.AddSwaggerGen();
+    }
 
-            app.UseMiddleware<ErrorHandlingMiddleware>();
-            app.UseMiddleware<RequestTimeMiddleware>();
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RestaurantSeeder seeder)
+    {
+        seeder.Seed();
 
-            app.UseAuthentication();
+        if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
-            app.UseHttpsRedirection();
+        app.UseMiddleware<ErrorHandlingMiddleware>();
+        app.UseMiddleware<RequestTimeMiddleware>();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Restaurant API");
-            });
+        app.UseAuthentication();
 
-            app.UseRouting();
+        app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+        app.UseSwagger();
+        app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Restaurant API"); });
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
+        app.UseRouting();
+
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
 }

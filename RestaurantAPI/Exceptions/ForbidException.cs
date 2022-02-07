@@ -1,12 +1,10 @@
 ﻿using System;
 
-namespace RestaurantAPI.Exceptions
-{
-    public class ForbidException : Exception
-    {
-        public ForbidException(string message) : base(message)
-        {
+namespace RestaurantAPI.Exceptions;
 
-        }
+public class ForbidException : Exception
+{
+    public ForbidException(string message) : base(message)
+    {
     }
 }
