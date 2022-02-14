@@ -68,3 +68,4 @@ D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\Fluen
 D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
 D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Programowanie\ASP.NET CORE\RestaurantAPI\RestaurantAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
