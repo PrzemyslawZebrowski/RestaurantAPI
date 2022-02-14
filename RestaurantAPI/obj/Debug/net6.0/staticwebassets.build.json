@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "m0JKZ+xGO/UPRjs7/PmkPNhwO+DSX0Ggnkn1FNx3J5U=",
+  "Hash": "ZMfseICtLTi5I7L+Otg2pCXz9fKGsb/MxAlJQ5r8kj4=",
   "Source": "RestaurantAPI",
   "BasePath": "_content/RestaurantAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "RestaurantAPI\\wwwroot",
+      "Source": "RestaurantAPI",
+      "ContentRoot": "D:\\Programowanie\\ASP.NET CORE\\RestaurantAPI\\RestaurantAPI\\wwwroot\\",
+      "BasePath": "_content/RestaurantAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Programowanie\\ASP.NET CORE\\RestaurantAPI\\RestaurantAPI\\wwwroot\\file.txt",
+      "SourceId": "RestaurantAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Programowanie\\ASP.NET CORE\\RestaurantAPI\\RestaurantAPI\\wwwroot\\",
+      "BasePath": "_content/RestaurantAPI",
+      "RelativePath": "file.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\file.txt"
+    }
+  ]
 }
